@@ -24,10 +24,19 @@ const buttonCopyMap: ButtonCopyMap = {
 class Button extends Vue {
   @Prop({ type: String, required: true })
   readonly buttonType!: keyof ButtonCopyMap;
-  @Prop({ type: Function, required: true }) handleClick!: Function;
+  @Prop({ type: String, required: false }) item?: string;
+  @Prop({ type: Number, required: false }) index?: number;
 
   get buttonCopy(): string {
     return buttonCopyMap[this.buttonType];
+  }
+
+  handleClick() {
+    console.log(
+      `clicked button type: ${this.buttonType} for item: ${this.item} at index: ${this.index}`
+    );
+    // splice from the current type list
+    // push to other list
   }
 }
 

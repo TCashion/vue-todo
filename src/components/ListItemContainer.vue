@@ -3,7 +3,7 @@
     <ul class="ListItemContainer__list">
       <li
         class="ListItemContainer__list__item"
-        v-for="item in items"
+        v-for="(item, index) in items"
         :key="item"
       >
         <div
@@ -12,7 +12,7 @@
           ]"
         >
           {{ item }}
-          <Button :buttonType="listType" :handleClick="handleClick" />
+          <Button :buttonType="listType" :index="index" :item="item" />
         </div>
       </li>
     </ul>
@@ -31,10 +31,6 @@ import Button from "./Button.vue";
 class ListItemContainer extends Vue {
   @Prop({ type: String, required: true }) listType!: string;
   @Prop({ type: Array, required: true }) items!: string[];
-
-  handleClick() {
-    console.log("click");
-  }
 }
 export default ListItemContainer;
 </script>
