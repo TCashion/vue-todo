@@ -6,7 +6,14 @@
         v-for="item in items"
         :key="item"
       >
-        <div>{{ item }} <Button :buttonType="listType" /></div>
+        <div
+          :class="[
+            { ListItemContainer__list__item__done: listType === 'done' }
+          ]"
+        >
+          {{ item }}
+          <Button :buttonType="listType" :handleClick="handleClick" />
+        </div>
       </li>
     </ul>
   </div>
@@ -24,6 +31,10 @@ import Button from "./Button.vue";
 class ListItemContainer extends Vue {
   @Prop({ type: String, required: true }) listType!: string;
   @Prop({ type: Array, required: true }) items!: string[];
+
+  handleClick() {
+    console.log("click");
+  }
 }
 export default ListItemContainer;
 </script>
@@ -47,6 +58,9 @@ export default ListItemContainer;
         button {
           float: right;
         }
+      }
+      &__done {
+        text-decoration: line-through;
       }
     }
   }

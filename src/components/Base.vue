@@ -23,7 +23,7 @@ export default class App extends Vue {
         "Work out",
         "Feed the dogs"
       ],
-      done: []
+      done: ["Mow the lawn"]
     };
   }
 }

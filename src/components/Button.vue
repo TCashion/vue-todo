@@ -1,5 +1,5 @@
 <template>
-  <button type="button">{{ buttonCopy }}</button>
+  <button type="button" @click="handleClick">{{ buttonCopy }}</button>
 </template>
 
 <script lang="ts">
@@ -20,11 +20,11 @@ const buttonCopyMap: ButtonCopyMap = {
   toDo: ButtonCopy.toDo
 };
 
-console.log("buttonCopyMap: ", buttonCopyMap);
-
 @Component
 class Button extends Vue {
-  @Prop({ type: String, required: true }) buttonType!: keyof ButtonCopyMap;
+  @Prop({ type: String, required: true })
+  readonly buttonType!: keyof ButtonCopyMap;
+  @Prop({ type: Function, required: true }) handleClick!: Function;
 
   get buttonCopy(): string {
     return buttonCopyMap[this.buttonType];
