@@ -6,7 +6,7 @@
         v-for="item in items"
         :key="item"
       >
-        <div>{{ item }} <Button /></div>
+        <div>{{ item }} <Button :buttonType="listType" /></div>
       </li>
     </ul>
   </div>
@@ -18,11 +18,12 @@ import Button from "./Button.vue";
 
 @Component({
   components: {
-    Button,
-  },
+    Button
+  }
 })
 class ListItemContainer extends Vue {
-  @Prop({ type: Array, required: false }) items?: string[];
+  @Prop({ type: String, required: true }) listType!: string;
+  @Prop({ type: Array, required: true }) items!: string[];
 }
 export default ListItemContainer;
 </script>
@@ -32,7 +33,7 @@ export default ListItemContainer;
   height: 10rem;
   width: 20rem;
   margin: 3rem;
-  padding: 2rem; 
+  padding: 2rem;
   border: 2px solid #f2f2f2;
   display: flex;
 
@@ -43,7 +44,7 @@ export default ListItemContainer;
     &__item {
       div {
         text-align: left;
-        Button {
+        button {
           float: right;
         }
       }

@@ -10,8 +10,8 @@ import Base from "./components/Base.vue";
 
 @Component({
   components: {
-    Base,
-  },
+    Base
+  }
 })
 export default class App extends Vue {}
 </script>

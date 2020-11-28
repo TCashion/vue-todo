@@ -1,7 +1,7 @@
 <template>
   <div id="base">
-    <list-item-container :items="toDo" />
-    <list-item-container :items="done" />
+    <list-item-container :items="toDo" listType="toDo" />
+    <list-item-container :items="done" listType="done" />
   </div>
 </template>
 
@@ -11,8 +11,8 @@ import ListItemContainer from "./ListItemContainer.vue";
 
 @Component({
   components: {
-    ListItemContainer,
-  },
+    ListItemContainer
+  }
 })
 export default class App extends Vue {
   data() {
@@ -21,9 +21,9 @@ export default class App extends Vue {
         "Go to the grocery store",
         "Vacuum the floor",
         "Work out",
-        "Feed the dogs",
+        "Feed the dogs"
       ],
-      done: [],
+      done: []
     };
   }
 }
