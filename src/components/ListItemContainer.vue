@@ -1,20 +1,17 @@
 <template>
   <div class="ListItemContainer">
     <ul class="ListItemContainer__list">
-      <li>1.</li>
-      <li>1.</li>
-      <li>1.</li>
-      <li>1.</li>
+      <li v-for="item in items" :key="item">{{ item }} - BUTTON</li>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Prop, Component } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
 
 @Component
 class ListItemContainer extends Vue {
-  @Prop({ required: true, type: String }) readonly type!: string;
+    @Prop({type: Array, required: false}) items?: string[];
 }
 export default ListItemContainer;
 </script>

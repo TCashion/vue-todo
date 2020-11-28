@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <list-item-container type="todo" />
-    <list-item-container type="done" />
+    <Base />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import ListItemContainer from "./components/ListItemContainer.vue";
+import Base from "./components/Base.vue";
 
 @Component({
   components: {
-    ListItemContainer,
+    Base,
   },
 })
 export default class App extends Vue {}
