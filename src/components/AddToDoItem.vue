@@ -6,7 +6,7 @@
       placeholder="Add a new item"
       ref="addItem"
     />
-    <Button buttonType="add" :handleClick="handleClick" />
+    <Button buttonType="add" @clicked="handleClick" />
   </div>
 </template>
 

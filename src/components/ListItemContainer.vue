@@ -14,9 +14,8 @@
           {{ item }}
           <Button
             :buttonType="listType"
-            :index="index"
             :item="item"
-            :handleClick="handleClick"
+            @clicked="handleClick(index)"
           />
         </div>
       </li>
