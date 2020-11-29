@@ -25,7 +25,7 @@ class Button extends Vue {
   @Prop({ type: String, required: true })
   readonly buttonType!: keyof ButtonCopyMap;
   @Prop({ type: String, required: false }) item?: string;
-  @Prop({ type: Number, required: false }) index?: number;
+  @Prop({ type: Number, required: true }) index!: number;
 
   get buttonCopy(): string {
     return buttonCopyMap[this.buttonType];
@@ -40,13 +40,13 @@ class Button extends Vue {
   }
 
   handleClick() {
-    console.log(
-      `clicked button type: ${this.buttonType} for item: ${this.item} at index: ${this.index}`
-    );
-    if (this.buttonType === "toDo" && this.index) {
-      this.doneItems.push(this.toDoItems.splice(this.index, 1)[0]);
-    } else if (this.buttonType === "done" && this.index) {
-      this.toDoItems.push(this.doneItems.splice(this.index, 1)[0]);
+    switch (this.buttonType) {
+      case "toDo":
+        this.doneItems.push(this.toDoItems.splice(this.index, 1)[0]);
+        break;
+      case "done":
+        this.toDoItems.push(this.doneItems.splice(this.index, 1)[0]);
+        break;
     }
   }
 }
