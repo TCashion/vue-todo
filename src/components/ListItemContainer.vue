@@ -12,7 +12,12 @@
           ]"
         >
           {{ item }}
-          <Button :buttonType="listType" :index="index" :item="item" />
+          <Button
+            :buttonType="listType"
+            :index="index"
+            :item="item"
+            :handleClick="handleClick"
+          />
         </div>
       </li>
     </ul>
@@ -31,6 +36,25 @@ import Button from "./Button.vue";
 class ListItemContainer extends Vue {
   @Prop({ type: String, required: true }) listType!: string;
   @Prop({ type: Array, required: true }) items!: string[];
+
+  get toDoItems() {
+    return this.$store.getters.toDoItems;
+  }
+
+  get doneItems() {
+    return this.$store.getters.doneItems;
+  }
+
+  handleClick(index: number) {
+    switch (this.listType) {
+      case "toDo":
+        this.doneItems.push(this.toDoItems.splice(index, 1)[0]);
+        break;
+      case "done":
+        this.toDoItems.push(this.doneItems.splice(index, 1)[0]);
+        break;
+    }
+  }
 }
 export default ListItemContainer;
 </script>

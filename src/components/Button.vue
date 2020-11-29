@@ -7,47 +7,31 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 
 enum ButtonCopy {
   done = "Undo",
-  toDo = "Mark Done"
+  toDo = "Mark Done",
+  add = "Add"
 }
 
 interface ButtonCopyMap {
   done: string;
   toDo: string;
+  add: string;
 }
 
 const buttonCopyMap: ButtonCopyMap = {
   done: ButtonCopy.done,
-  toDo: ButtonCopy.toDo
+  toDo: ButtonCopy.toDo,
+  add: ButtonCopy.add
 };
 
 @Component
 class Button extends Vue {
   @Prop({ type: String, required: true })
   readonly buttonType!: keyof ButtonCopyMap;
-  @Prop({ type: String, required: false }) item?: string;
-  @Prop({ type: Number, required: true }) index!: number;
+  @Prop({ type: Number, required: false }) index?: number;
+  @Prop({ type: Function, required: false }) handleClick?: Function;
 
   get buttonCopy(): string {
     return buttonCopyMap[this.buttonType];
-  }
-
-  get toDoItems() {
-    return this.$store.getters.toDoItems;
-  }
-
-  get doneItems() {
-    return this.$store.getters.doneItems;
-  }
-
-  handleClick() {
-    switch (this.buttonType) {
-      case "toDo":
-        this.doneItems.push(this.toDoItems.splice(this.index, 1)[0]);
-        break;
-      case "done":
-        this.toDoItems.push(this.doneItems.splice(this.index, 1)[0]);
-        break;
-    }
   }
 }
 

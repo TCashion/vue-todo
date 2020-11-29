@@ -1,17 +1,24 @@
 <template>
-  <div id="base">
-    <list-item-container :items="toDoItems" listType="toDo" />
-    <list-item-container :items="doneItems" listType="done" />
+  <div class="Base" id="base">
+    <div class="Base__container">
+      <add-to-do-item />
+    </div>
+    <div class="Base__container">
+      <list-item-container :items="toDoItems" listType="toDo" />
+      <list-item-container :items="doneItems" listType="done" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import ListItemContainer from "./ListItemContainer.vue";
+import AddToDoItem from "./AddToDoItem.vue";
 
 @Component({
   components: {
-    ListItemContainer
+    ListItemContainer,
+    AddToDoItem
   }
 })
 export default class App extends Vue {
@@ -25,9 +32,15 @@ export default class App extends Vue {
 }
 </script>
 
-<style>
-#base {
+<style lang="scss">
+.Base {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+  }
 }
 </style>
