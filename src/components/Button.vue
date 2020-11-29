@@ -31,12 +31,23 @@ class Button extends Vue {
     return buttonCopyMap[this.buttonType];
   }
 
+  get toDoItems() {
+    return this.$store.getters.toDoItems;
+  }
+
+  get doneItems() {
+    return this.$store.getters.doneItems;
+  }
+
   handleClick() {
     console.log(
       `clicked button type: ${this.buttonType} for item: ${this.item} at index: ${this.index}`
     );
-    // splice from the current type list
-    // push to other list
+    if (this.buttonType === "toDo" && this.index) {
+      this.doneItems.push(this.toDoItems.splice(this.index, 1)[0]);
+    } else if (this.buttonType === "done" && this.index) {
+      this.toDoItems.push(this.doneItems.splice(this.index, 1)[0]);
+    }
   }
 }
 

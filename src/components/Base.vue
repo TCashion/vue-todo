@@ -1,7 +1,7 @@
 <template>
   <div id="base">
-    <list-item-container :items="toDo" listType="toDo" />
-    <list-item-container :items="done" listType="done" />
+    <list-item-container :items="toDoItems" listType="toDo" />
+    <list-item-container :items="doneItems" listType="done" />
   </div>
 </template>
 
@@ -15,16 +15,12 @@ import ListItemContainer from "./ListItemContainer.vue";
   }
 })
 export default class App extends Vue {
-  data() {
-    return {
-      toDo: [
-        "Go to the grocery store",
-        "Vacuum the floor",
-        "Work out",
-        "Feed the dogs"
-      ],
-      done: ["Mow the lawn"]
-    };
+  get toDoItems() {
+    return this.$store.getters.toDoItems;
+  }
+
+  get doneItems() {
+    return this.$store.getters.doneItems;
   }
 }
 </script>
